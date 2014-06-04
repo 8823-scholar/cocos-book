@@ -28,3 +28,13 @@ void Card::onTap(cocos2d::Touch* touch, cocos2d::Event* event)
 {
     CCLOG("%s : %s(%d:%d)", "Card", "onTap", this->type, this->number);
 }
+
+void Card::onLongTap(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+    CCLOG("%s : %s(%d:%d)", "Card", "onLongTap", this->type, this->number);
+}
+
+void Card::onDoubleTap(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+    CCLOG("%s : %s(%d:%d)", "Card", "onDoubleTap", this->type, this->number);
+}

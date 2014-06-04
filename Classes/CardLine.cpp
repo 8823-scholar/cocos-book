@@ -24,7 +24,8 @@ void CardLine::pushCard(Card* card)
     auto *listener = EventListenerTouchOneByOneGesture::create();
     listener->onTapBegan = CC_CALLBACK_2(Card::onTouchBegan, card);
     listener->onTap = CC_CALLBACK_2(Card::onTap, card);
-    auto dispatcher = this->getEventDispatcher();
+    listener->onLongTap = CC_CALLBACK_2(Card::onLongTap, card);
+    listener->onDoubleTap = CC_CALLBACK_2(Card::onDoubleTap, card);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, card);
 }
 

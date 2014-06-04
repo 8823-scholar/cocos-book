@@ -13,7 +13,7 @@ EventListenerTouchOneByOneGesture::EventListenerTouchOneByOneGesture()
 , _touchCount(0)
 {
     this->_tapTime = 100;
-    this->_doubleTapTime = 250;
+    this->_doubleTapTime = 190;
     this->_longTapTime = 2000;
         
     auto director = cocos2d::Director::getInstance();
@@ -103,12 +103,17 @@ void EventListenerTouchOneByOneGesture::onTouchEnded(cocos2d::Touch* touch, coco
 
     long endTime = this->getNowMillisecondTime();
     long diffTime = endTime - this->_touchStartTime;
-    
-    if (this->_touchCount == 0) {
-        this->_scheduler->schedule(schedule_selector(EventListenerTouchOneByOneGesture::_tapHandler), this, 0.0f, 0, this->_doubleTapTime / 1000, false);
-    }
-    this->_touchCount++;
 
+    if (diffTime > this->_longTapTime) {
+        if (this->onLongTap) {
+            this->onLongTap(this->_touch, this->_event);
+        }
+    } else {
+        if (this->_touchCount == 0) {
+            this->_scheduler->schedule(schedule_selector(EventListenerTouchOneByOneGesture::_tapHandler), this, 0.0f, 0, this->_doubleTapTime / 1000.0f, false);
+        }
+        this->_touchCount++;
+    }
 }
 
 void EventListenerTouchOneByOneGesture::_tapHandler(float dt)
@@ -117,7 +122,10 @@ void EventListenerTouchOneByOneGesture::_tapHandler(float dt)
 
     if (this->_touchCount == 1) {
         this->_touchCount = 0;
-        this->onTap(this->_touch, this->_event);
+        if (this->onTap) this->onTap(this->_touch, this->_event);
+    } else if (this->_touchCount == 2) {
+        this->_touchCount = 0;
+        if (this->onDoubleTap) this->onDoubleTap(this->_touch, this->_event);
     } else {
         this->_touchCount = 0;
     }

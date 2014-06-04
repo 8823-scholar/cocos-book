@@ -45,6 +45,8 @@ public:
     virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
     
     virtual void onTap(cocos2d::Touch* touch, cocos2d::Event* event);
+    virtual void onLongTap(cocos2d::Touch* touch, cocos2d::Event* event);
+    virtual void onDoubleTap(cocos2d::Touch* touch, cocos2d::Event* event);
 };
 
 #endif // __CARD_H__
