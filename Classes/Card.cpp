@@ -22,3 +22,9 @@ void Card::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
     CCLOG("%s : %s(%d:%d)", "Card", "onTouchEnded", this->type, this->number);
 }
+
+
+void Card::onTap(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+    CCLOG("%s : %s(%d:%d)", "Card", "onTap", this->type, this->number);
+}

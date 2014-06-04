@@ -73,6 +73,7 @@
 		DB9BD208193DAD6100EB3811 /* tramp in Resources */ = {isa = PBXBuildFile; fileRef = DB9BD207193DAD6100EB3811 /* tramp */; };
 		DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */; };
 		DB9BD210193DD19500EB3811 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20F193DD19500EB3811 /* Card.cpp */; };
+		DB9BD213193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */; };
 		DBDEDB1B192CE0A500A91DF3 /* girl-frames in Resources */ = {isa = PBXBuildFile; fileRef = DBDEDB1A192CE0A500A91DF3 /* girl-frames */; };
 /* End PBXBuildFile section */
 
@@ -278,6 +279,8 @@
 		DB9BD20C193DC7BE00EB3811 /* CardLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardLine.h; path = ../Classes/CardLine.h; sourceTree = "<group>"; };
 		DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CardLine.cpp; path = ../Classes/CardLine.cpp; sourceTree = "<group>"; };
 		DB9BD20F193DD19500EB3811 /* Card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Card.cpp; path = ../Classes/Card.cpp; sourceTree = "<group>"; };
+		DB9BD211193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventListenerTouchOneByOneGesture.h; path = ../Classes/EventListenerTouchOneByOneGesture.h; sourceTree = "<group>"; };
+		DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventListenerTouchOneByOneGesture.cpp; path = ../Classes/EventListenerTouchOneByOneGesture.cpp; sourceTree = "<group>"; };
 		DBDEDB1A192CE0A500A91DF3 /* girl-frames */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "girl-frames"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -349,6 +352,8 @@
 			isa = PBXGroup;
 			children = (
 				DB9BD20F193DD19500EB3811 /* Card.cpp */,
+				DB9BD211193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.h */,
+				DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */,
 				DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */,
 				DB9BD20C193DC7BE00EB3811 /* CardLine.h */,
 				DB9BD20B193DB50000EB3811 /* Card.h */,
@@ -696,6 +701,7 @@
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 				DB9BD210193DD19500EB3811 /* Card.cpp in Sources */,
+				DB9BD213193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
