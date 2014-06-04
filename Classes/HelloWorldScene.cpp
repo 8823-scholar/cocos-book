@@ -1,4 +1,6 @@
 #include "HelloWorldScene.h"
+#include "Card.h"
+#include "CardLine.h"
 
 USING_NS_CC;
 
@@ -13,7 +15,7 @@ Scene* HelloWorld::createScene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    if ( !LayerColor::initWithColor(Color4B(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(Color4B(71, 120, 0, 255)) )
     {
         return false;
     }
@@ -51,7 +53,8 @@ bool HelloWorld::init()
     sprite->runAction(RepeatForever::create(seq));
     */
 
-    this->chapter5_2();
+    //this->chapter5_2();
+    this->chapter5_3();
     
     return true;
 }
@@ -89,5 +92,46 @@ void HelloWorld::chapter5_2()
     auto *animate = Animate::create(animation);
     auto *animated = RepeatForever::create(animate);
     sprite->runAction(animated);
+}
+
+void HelloWorld::chapter5_3()
+{
+    /*
+    auto *listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
+    */
+
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();
+
+    /*
+    this->sprite = Sprite::create("girl.png");
+    this->sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    this->addChild(this->sprite, 0);
+    */
+
+    this->initCards();
+}
+
+void HelloWorld::initCards()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();
+
+    this->line1 = CardLine::create();
+
+    this->line1->pushCard(Card::createWithNumber(CardType::Spade, 3));
+    this->line1->pushCard(Card::createWithNumber(CardType::Spade, 9));
+    this->line1->pushCard(Card::createWithNumber(CardType::Diamond, 13));
+    this->line1->pushCard(Card::createWithNumber(CardType::Heart, 1));
+    this->addChild(line1);
+
+    this->line1->setScale(0.5);
+    this->line1->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));    
+}
+
+bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
+{
 }
 
