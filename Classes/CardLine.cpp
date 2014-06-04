@@ -22,7 +22,9 @@ void CardLine::pushCard(Card* card)
     listener->setSwallowTouches(true);
     */
     auto *listener = EventListenerTouchOneByOneGesture::create();
+    listener->onTapBegan = CC_CALLBACK_2(Card::onTouchBegan, card);
     listener->onTap = CC_CALLBACK_2(Card::onTap, card);
+    auto dispatcher = this->getEventDispatcher();
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, card);
 }
 

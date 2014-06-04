@@ -8,7 +8,16 @@ EventListenerTouchOneByOneGesture::EventListenerTouchOneByOneGesture()
 , onLongTap(nullptr)
 , onDoubleTap(nullptr)
 , onSwipe(nullptr)
+, onTapBegan(nullptr)
+, _touchStart(false)
+, _touchCount(0)
 {
+    this->_tapTime = 100;
+    this->_doubleTapTime = 250;
+    this->_longTapTime = 2000;
+        
+    auto director = cocos2d::Director::getInstance();
+    this->_scheduler = director->getScheduler();
 }
 
 EventListenerTouchOneByOneGesture* EventListenerTouchOneByOneGesture::create()
@@ -18,11 +27,12 @@ EventListenerTouchOneByOneGesture* EventListenerTouchOneByOneGesture::create()
     {
         ret->autorelease();
 
+        auto director = cocos2d::Director::getInstance();
         auto listener = cocos2d::EventListenerTouchOneByOne::create();
         listener->onTouchBegan = CC_CALLBACK_2(EventListenerTouchOneByOneGesture::onTouchBegan, ret);
         listener->onTouchMoved = CC_CALLBACK_2(EventListenerTouchOneByOneGesture::onTouchMoved, ret);
         listener->onTouchEnded = CC_CALLBACK_2(EventListenerTouchOneByOneGesture::onTouchEnded, ret);
-        cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(listener, 100);
+        director->getEventDispatcher()->addEventListenerWithFixedPriority(listener, 100);
     }
     else
     {
@@ -41,17 +51,75 @@ bool EventListenerTouchOneByOneGesture::init()
     return false;
 }
 
+bool EventListenerTouchOneByOneGesture::checkAvailable()
+{
+    if (this->onTapBegan == nullptr) {
+        CCASSERT(false, "Invalid EventListenerTouchOneByOneGesture!");
+        return false;
+    }
+    return true;
+}
+
+long EventListenerTouchOneByOneGesture::getNowMillisecondTime()
+{
+    struct timeval now;
+    gettimeofday(&now, nullptr);
+    return (now.tv_sec * 1000 + now.tv_usec / 1000);
+}
+
 
 bool EventListenerTouchOneByOneGesture::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-    CCLOG("%s : %s", "EventListenerTouchOneByOneGesture", "onTouchBegan");
+    if (! this->onTapBegan(touch, event)) return false;
+
+    this->_touch = touch;
+    this->_event = event;
+
+    this->_touchStart = true;
+    this->_touchStartTime = this->getNowMillisecondTime();
+    
+    //this->_scheduler->schedule(schedule_selector(EventListenerTouchOneByOneGesture::onLongTouchBegan), this, 0.0f, 0, this->_longTapTime / 1000, false);
+
     return true;
+}
+void EventListenerTouchOneByOneGesture::onLongTouchBegan(float delay)
+{
+    CCLOG("onLongTouchBegan");
+    if (!this->_touchStart) return;
+
+    this->_touchStart = false;
+    // this->onLongTap(this->_touch, this->_event);
 }
 void EventListenerTouchOneByOneGesture::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-    CCLOG("%s : %s", "EventListenerTouchOneByOneGesture", "onTouchMoved");
 }
+
 void EventListenerTouchOneByOneGesture::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-    CCLOG("%s : %s", "EventListenerTouchOneByOneGesture", "onTouchEnded");
+    if (! this->_touchStart) return;
+
+    this->_touch = touch;
+    this->_event = event;
+
+    long endTime = this->getNowMillisecondTime();
+    long diffTime = endTime - this->_touchStartTime;
+    
+    if (this->_touchCount == 0) {
+        this->_scheduler->schedule(schedule_selector(EventListenerTouchOneByOneGesture::_tapHandler), this, 0.0f, 0, this->_doubleTapTime / 1000, false);
+    }
+    this->_touchCount++;
+
 }
+
+void EventListenerTouchOneByOneGesture::_tapHandler(float dt)
+{
+    this->_scheduler->unschedule(schedule_selector(EventListenerTouchOneByOneGesture::_tapHandler), this);
+
+    if (this->_touchCount == 1) {
+        this->_touchCount = 0;
+        this->onTap(this->_touch, this->_event);
+    } else {
+        this->_touchCount = 0;
+    }
+}
+
