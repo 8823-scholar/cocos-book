@@ -54,7 +54,8 @@ bool HelloWorld::init()
     */
 
     //this->chapter5_2();
-    this->chapter5_3();
+    //this->chapter5_3();
+    this->chapter5_4();
     
     return true;
 }
@@ -114,21 +115,36 @@ void HelloWorld::chapter5_3()
     this->initCards();
 }
 
+void HelloWorld::chapter5_4()
+{
+    this->initCards();
+}
+
 void HelloWorld::initCards()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
     this->line1 = CardLine::create();
-
+    this->line1->setScale(0.5);
+    this->line1->setAnchorPoint(Point(0, 0));
     this->line1->pushCard(Card::createWithNumber(CardType::Spade, 3));
     this->line1->pushCard(Card::createWithNumber(CardType::Spade, 9));
     this->line1->pushCard(Card::createWithNumber(CardType::Diamond, 13));
     this->line1->pushCard(Card::createWithNumber(CardType::Heart, 1));
-    this->addChild(line1);
-
-    this->line1->setScale(0.5);
-    this->line1->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));    
+    this->line1->setPosition(Point(visibleSize.width/2 + origin.x - 100, visibleSize.height/2 + origin.y));    
+    this->addChild(this->line1);
+    
+    this->line2 = CardLine::create();
+    this->line2->setScale(0.5);
+    this->line2->setAnchorPoint(Point(0, 0));
+    this->line2->pushCard(Card::createWithNumber(CardType::Heart, 7));
+    this->line2->pushCard(Card::createWithNumber(CardType::Spade, 4));
+    this->line2->pushCard(Card::createWithNumber(CardType::Diamond, 11));
+    this->line2->pushCard(Card::createWithNumber(CardType::Diamond, 2));
+    this->line2->pushCard(Card::createWithNumber(CardType::Club, 10));
+    this->line2->setPosition(Point(visibleSize.width/2 + origin.x + 100, visibleSize.height/2 + origin.y));    
+    this->addChild(this->line2);
 }
 
 bool HelloWorld::onTouchBegan(Touch *touch, Event *event)

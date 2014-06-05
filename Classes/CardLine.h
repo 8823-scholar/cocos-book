@@ -1,8 +1,10 @@
+#pragma once
 #ifndef __CARD_LINE_H__
 #define __CARD_LINE_H__
 
-#include "cocos2d.h"
 #include "Card.h"
+#include "cocos2d.h"
+class Card;
 
 class CardLine : public cocos2d::Sprite
 {
@@ -12,6 +14,8 @@ public:
     CREATE_FUNC(CardLine);
 
     void pushCard(Card* card);
+    void putCard(Card* card);
+    void removeCard(Card* card);
 };
 
 #endif // __CARD_LINE_H__

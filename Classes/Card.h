@@ -1,7 +1,10 @@
+#pragma once
 #ifndef __CARD_H__
 #define __CARD_H__
 
+#include "CardLine.h"
 #include "cocos2d.h"
+class CardLine;
 
 enum CardType { Spade, Diamond, Club, Heart, Joker };
 
@@ -39,6 +42,8 @@ public:
     }
 
     virtual void viewBack();
+    virtual void gobackToStashPosition();
+    virtual CardLine* getLine();
 
     virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
     virtual void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
@@ -47,6 +52,10 @@ public:
     virtual void onTap(cocos2d::Touch* touch, cocos2d::Event* event);
     virtual void onLongTap(cocos2d::Touch* touch, cocos2d::Event* event);
     virtual void onDoubleTap(cocos2d::Touch* touch, cocos2d::Event* event);
+
+private:
+    bool _moving;
+    cocos2d::Point _stashPosition;
 };
 
 #endif // __CARD_H__

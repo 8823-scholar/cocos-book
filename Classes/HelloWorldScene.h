@@ -9,6 +9,7 @@ class HelloWorld : public cocos2d::LayerColor
 public:
     cocos2d::Sprite* sprite;
     CardLine* line1;
+    CardLine* line2;
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
@@ -21,6 +22,7 @@ public:
 
     virtual void chapter5_2();
     virtual void chapter5_3();
+    virtual void chapter5_4();
     virtual void initCards();
 
     bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
