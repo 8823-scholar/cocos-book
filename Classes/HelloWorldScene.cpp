@@ -1,6 +1,10 @@
 #include "HelloWorldScene.h"
 #include "Card.h"
 #include "CardLine.h"
+#include "HttpClient.h"
+#include "spine/Json.h"
+#include "picojson.h"
+#include "tinyxml2/tinyxml2.h"
 
 USING_NS_CC;
 
@@ -15,7 +19,8 @@ Scene* HelloWorld::createScene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    if ( !LayerColor::initWithColor(Color4B(71, 120, 0, 255)) )
+    //if ( !LayerColor::initWithColor(Color4B(71, 120, 0, 255)) )
+    if ( !LayerColor::initWithColor(Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
@@ -55,7 +60,10 @@ bool HelloWorld::init()
 
     //this->chapter5_2();
     //this->chapter5_3();
-    this->chapter5_4();
+    //this->chapter5_4();
+    //this->chapter5_5();
+    //this->chapter5_5_json();
+    this->chapter5_5_xml();
     
     return true;
 }
@@ -115,10 +123,53 @@ void HelloWorld::chapter5_3()
     this->initCards();
 }
 
+
 void HelloWorld::chapter5_4()
 {
     this->initCards();
 }
+
+
+void HelloWorld::chapter5_5()
+{
+    Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    Point origin = cocos2d::Director::getInstance()->getVisibleOrigin();
+
+    auto fileUtils = cocos2d::FileUtils::getInstance();
+    std::string filename = fileUtils->getWritablePath() + "image.png";
+    if (fileUtils->isFileExist(filename)) {
+        CCLOG("file exists : %s", filename.c_str());
+
+        auto sprite = cocos2d::Sprite::create(filename.c_str());
+        sprite->setPosition(cocos2d::Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+        this->addChild(sprite, 0);
+    } else {
+        CCLOG("file not exists");
+
+        auto request = new cocos2d::network::HttpRequest();
+        request->setUrl("http://befool.co.jp/images/service/img_headhub.png");
+        request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+        request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequest));
+        cocos2d::network::HttpClient::getInstance()->send(request);
+    }
+}
+void HelloWorld::chapter5_5_json()
+{
+    auto request = new cocos2d::network::HttpRequest();
+    request->setUrl("http://befool.co.jp/hoge.json");
+    request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+    request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequestJson));
+    cocos2d::network::HttpClient::getInstance()->send(request);
+}
+void HelloWorld::chapter5_5_xml()
+{
+    auto request = new cocos2d::network::HttpRequest();
+    request->setUrl("http://befool.co.jp/hoge.xml");
+    request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+    request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequestXml));
+    cocos2d::network::HttpClient::getInstance()->send(request);
+}
+
 
 void HelloWorld::initCards()
 {
@@ -151,3 +202,83 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
 {
 }
 
+void HelloWorld::callbackHttpRequest(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
+{
+    if (response->isSucceed()) {
+        CCLOG("image load success");
+
+        Size visibleSize = Director::getInstance()->getVisibleSize();
+        Point origin = Director::getInstance()->getVisibleOrigin();
+        
+        std::vector<char>* buffer = response->getResponseData();
+        auto image = new cocos2d::Image();
+        image->initWithImageData(reinterpret_cast<unsigned char*>(&(buffer->front())), buffer->size());
+
+        auto texture = new cocos2d::Texture2D();
+        texture->initWithImage(image);
+        
+        auto sprite = Sprite::createWithTexture(texture);
+        sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+        this->addChild(sprite, 0);
+    
+        auto fileUtils = cocos2d::FileUtils::getInstance();
+        std::string filename = fileUtils->getWritablePath() + "image.png";
+        image->saveToFile(filename.c_str());
+    }
+}
+void HelloWorld::callbackHttpRequestJson(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
+{
+    CCASSERT(response->isSucceed(), "failed to get json.");
+        
+    std::vector<char>* buffer = response->getResponseData();
+
+    /*
+    auto json = Json_create(reinterpret_cast<char*>(&(buffer->front())));
+
+    auto player = Json_getItem(json, "player");
+    CCLOG("name: %s", Json_getString(player, "name", ""));
+    CCLOG("hp: %d", Json_getInt(player, "hp", 0));
+    CCLOG("mp: %d", Json_getInt(player, "mp", 0));
+    CCLOG("job: %s", Json_getString(player, "job", ""));
+    auto hobby = Json_getItem(player, "hobby")->child;
+    if (hobby) {
+        do {
+            CCLOG("hobby: %s", hobby->valueString);
+        } while(hobby = hobby->next);
+    }
+    */
+
+    const char* data = reinterpret_cast<char*>(&(buffer->front()));
+    picojson::value v;
+    std::string error;
+    picojson::parse(v, data, data + strlen(data), &error);
+    CCASSERT(error.empty(), error.c_str());
+
+    picojson::object& player = v.get<picojson::object>()["player"].get<picojson::object>();
+    CCLOG("name: %s", player["name"].get<std::string>().c_str());
+    CCLOG("hp: %f", player["hp"].get<double>());
+    CCLOG("mp: %f", player["mp"].get<double>());
+    CCLOG("job: %s", player["job"].get<std::string>().c_str());
+    for (picojson::value hobby : player["hobby"].get<picojson::array>()) {
+        CCLOG("hobby: %s", hobby.get<std::string>().c_str());
+    }
+}
+void HelloWorld::callbackHttpRequestXml(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
+{
+    CCASSERT(response->isSucceed(), "failed to get xml.");
+        
+    std::vector<char>* buffer = response->getResponseData();
+    const char* data = reinterpret_cast<char*>(&(buffer->front()));
+
+    tinyxml2::XMLDocument doc;
+    doc.Parse(data);
+
+    auto player = doc.FirstChildElement("player");
+    CCLOG("name: %s", player->FirstChildElement("name")->GetText());
+    CCLOG("hp: %s", player->FirstChildElement("hp")->GetText());
+    CCLOG("mp: %s", player->FirstChildElement("mp")->GetText());
+    CCLOG("job: %s", player->FirstChildElement("job")->GetText());
+    for (auto hobby = player->FirstChildElement("hobbies")->FirstChildElement(); hobby != nullptr; hobby = hobby->NextSiblingElement()) {
+        CCLOG("hobby: %s", hobby->GetText());
+    }
+}

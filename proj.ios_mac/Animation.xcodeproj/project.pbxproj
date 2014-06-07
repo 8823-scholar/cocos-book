@@ -274,6 +274,7 @@
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		DB3839D2192C58CC004D2140 /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
+		DB984F4A1941B26F00DA4384 /* picojson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picojson.h; path = ../Classes/picojson.h; sourceTree = "<group>"; };
 		DB9BD207193DAD6100EB3811 /* tramp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tramp; sourceTree = "<group>"; };
 		DB9BD20B193DB50000EB3811 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = ../Classes/Card.h; sourceTree = "<group>"; };
 		DB9BD20C193DC7BE00EB3811 /* CardLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardLine.h; path = ../Classes/CardLine.h; sourceTree = "<group>"; };
@@ -351,6 +352,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DB984F4A1941B26F00DA4384 /* picojson.h */,
 				DB9BD20F193DD19500EB3811 /* Card.cpp */,
 				DB9BD211193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.h */,
 				DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */,
