@@ -12,9 +12,11 @@ USING_NS_CC;
 
 Scene* HelloWorld::createScene()
 {
-    auto scene = Scene::create();
+    auto scene = Scene::createWithPhysics();
     auto layer = HelloWorld::create();
     scene->addChild(layer);
+    layer->initPhysics();
+
     return scene;
 }
 
@@ -67,7 +69,8 @@ bool HelloWorld::init()
     //this->chapter5_5_json();
     //this->chapter5_5_xml();
     //this->chapter5_6();
-    this->chapter5_7();
+    //this->chapter5_7();
+    this->chapter5_8();
     
     return true;
 }
@@ -464,5 +467,109 @@ void HelloWorld::chapter5_7()
         CCLOG("name: %s", sqlite3_column_text(stmt, 1));
         CCLOG("age: %d", sqlite3_column_int(stmt, 2));
     }
+}
+
+void HelloWorld::chapter5_8()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();
+
+    auto sprite = cocos2d::Sprite::create("girl.png");
+    sprite->setScale(0.5);
+    sprite->setFlippedX(true);
+    sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y + 200));
+    this->addChild(sprite, 1);
+
+    // 物理設定
+    auto body = PhysicsBody::createBox(cocos2d::Size(sprite->getContentSize().width * 0.5, sprite->getContentSize().height * 0.5 - 20));
+    body->setMass(1.0f);
+    sprite->setPhysicsBody(body);
+
+    // 地面
+    auto ground = cocos2d::Sprite::create();
+    ground->setAnchorPoint(cocos2d::Point(0.5, 0));
+    ground->setPosition(Point(visibleSize.width/2 + origin.x, 0));
+    this->addChild(ground);
+
+    auto draw = cocos2d::DrawNode::create();
+    cocos2d::Point points[] = {
+        cocos2d::Point(0, 0),
+        cocos2d::Point(0, 50),
+        cocos2d::Point(visibleSize.width + 100, 50),
+        cocos2d::Point(visibleSize.width + 100, 0)
+    };
+    draw->drawPolygon(points, 4, cocos2d::Color4F(cocos2d::Color4B(0, 0, 0, 255)), 0, cocos2d::Color4F(cocos2d::Color4B(0, 0, 0, 0)));
+    ground->addChild(draw);
+    ground->setContentSize(cocos2d::Size(visibleSize.width + 100, 50));
+
+    auto groundBody = PhysicsBody::createBox(ground->getContentSize());
+    groundBody->setDynamic(false);
+    ground->setPhysicsBody(groundBody);
+
+    // ジャンプ
+    auto listener = cocos2d::EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = [sprite](cocos2d::Touch* touch, cocos2d::Event* event) -> bool {
+        CCLOG("tap");
+        
+        sprite->getPhysicsBody()->applyImpulse(cocos2d::Vect(0, 180.0f));
+
+        return true;
+    };
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, sprite);
+
+    // 障害物
+    auto hurdle = cocos2d::Sprite::create();
+    hurdle->setPosition(Point(visibleSize.width/2 + origin.x + 200, 10));
+    this->addChild(hurdle);
+
+    auto draw2 = cocos2d::DrawNode::create();
+    cocos2d::Point points2[] = {
+        cocos2d::Point(0, 0),
+        cocos2d::Point(0, 1000),
+        cocos2d::Point(50, 1000),
+        cocos2d::Point(50, 0)
+    };
+    draw2->drawPolygon(points2, 4, cocos2d::Color4F(cocos2d::Color4B(0, 0, 0, 255)), 0, cocos2d::Color4F(cocos2d::Color4B(0, 0, 0, 0)));
+    hurdle->addChild(draw2);
+    hurdle->setContentSize(cocos2d::Size(50, 1000));
+
+    auto hurdleBody = cocos2d::PhysicsBody::createBox(hurdle->getContentSize());
+    hurdleBody->setDynamic(false);
+    hurdle->setPhysicsBody(hurdleBody);
+    hurdleBody->setTag(5);
+
+    // 衝突リスナー
+    body->setContactTestBitmask(1);
+    hurdleBody->setContactTestBitmask(1);
+    auto contactListener = cocos2d::EventListenerPhysicsContact::create();
+    contactListener->onContactBegin = [this](cocos2d::PhysicsContact& contact) -> bool {
+        CCLOG("contacted: shapeA(%d), shapeB(%d)", contact.getShapeA()->getBody()->getTag(), contact.getShapeB()->getBody()->getTag());
+
+        // 障害物との衝突の場合、ゲームーオーバー
+        auto shapeA = contact.getShapeA()->getBody();
+        auto shapeB = contact.getShapeB()->getBody();
+        if (shapeA->getTag() == 5 || shapeB->getTag() == 5) {
+            //this->gameOver();
+        }
+
+        return true;
+    };
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, sprite);
+
+    // 右へ飛ばす
+    sprite->getPhysicsBody()->applyImpulse(cocos2d::Vect(180.0f, 0));
+}
+
+void HelloWorld::initPhysics()
+{
+    auto scene = this->getScene();
+
+    // 重力場の設定
+    cocos2d::Vect gravity;
+    auto world = scene->getPhysicsWorld();
+    gravity.setPoint(0, -50);
+    world->setGravity(gravity);
+    //world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    world->setSpeed(6.0f);
 }
 
