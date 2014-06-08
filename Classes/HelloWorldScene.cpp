@@ -5,6 +5,7 @@
 #include "spine/Json.h"
 #include "picojson.h"
 #include "tinyxml2/tinyxml2.h"
+#include "LoadingBar.h"
 
 USING_NS_CC;
 
@@ -63,7 +64,8 @@ bool HelloWorld::init()
     //this->chapter5_4();
     //this->chapter5_5();
     //this->chapter5_5_json();
-    this->chapter5_5_xml();
+    //this->chapter5_5_xml();
+    this->chapter5_6();
     
     return true;
 }
@@ -281,4 +283,65 @@ void HelloWorld::callbackHttpRequestXml(cocos2d::network::HttpClient* sender, co
     for (auto hobby = player->FirstChildElement("hobbies")->FirstChildElement(); hobby != nullptr; hobby = hobby->NextSiblingElement()) {
         CCLOG("hobby: %s", hobby->GetText());
     }
+}
+
+
+void HelloWorld::chapter5_6()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();
+    
+    this->sprite = cocos2d::Sprite::create();
+    this->sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y + 150));
+    this->addChild(this->sprite);
+
+    this->loadingBar = LoadingBar::create();
+    this->loadingBar->setPosition(cocos2d::Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    this->addChild(this->loadingBar);
+    
+    auto request = new cocos2d::network::HttpRequest();
+    request->setUrl("http://befool.co.jp/images.json");
+    request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+    request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequestLoadingBarImages));
+    cocos2d::network::HttpClient::getInstance()->send(request);
+}    
+void HelloWorld::callbackHttpRequestLoadingBarImages(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
+{
+    CCASSERT(response->isSucceed(), "failed to get json.");
+        
+    std::vector<char>* buffer = response->getResponseData();
+    const char* data = reinterpret_cast<char*>(&(buffer->front()));
+    picojson::value v;
+    std::string error;
+    picojson::parse(v, data, data + strlen(data), &error);
+    CCASSERT(error.empty(), error.c_str());
+
+    auto images = v.get<picojson::object>()["images"].get<picojson::array>();
+    this->loadingBar->setTotal(images.size());
+    for (picojson::value image : images) {
+        CCLOG("image: %s", image.get<std::string>().c_str());
+
+        auto request = new cocos2d::network::HttpRequest();
+        request->setUrl(image.get<std::string>().c_str());
+        request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+        request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequestLoadingBarImage));
+        cocos2d::network::HttpClient::getInstance()->send(request);
+    }
+}
+
+void HelloWorld::callbackHttpRequestLoadingBarImage(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
+{
+    CCASSERT(response->isSucceed(), "failed to get json.");
+        
+    std::vector<char>* buffer = response->getResponseData();
+    auto image = new cocos2d::Image();
+    //image->initWithImageData(reinterpret_cast<unsigned char*>(&(buffer->front())), buffer->size());
+    image->initWithImageFile("tramp/s09.png");
+
+    auto texture = new cocos2d::Texture2D();
+    texture->initWithImage(image);
+    this->sprite->setTexture(texture);
+    this->sprite->setTextureRect(cocos2d::Rect(0, 0, texture->getContentSize().width, texture->getContentSize().height));
+    this->sprite->setScale(0.5);
+    this->loadingBar->addToCurrent(1);
 }

@@ -75,6 +75,7 @@
 		DB9BD210193DD19500EB3811 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20F193DD19500EB3811 /* Card.cpp */; };
 		DB9BD213193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */; };
 		DBDEDB1B192CE0A500A91DF3 /* girl-frames in Resources */ = {isa = PBXBuildFile; fileRef = DBDEDB1A192CE0A500A91DF3 /* girl-frames */; };
+		DBEEEF3E194359420038C168 /* LoadingBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBEEEF3C194359420038C168 /* LoadingBar.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +284,8 @@
 		DB9BD211193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventListenerTouchOneByOneGesture.h; path = ../Classes/EventListenerTouchOneByOneGesture.h; sourceTree = "<group>"; };
 		DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventListenerTouchOneByOneGesture.cpp; path = ../Classes/EventListenerTouchOneByOneGesture.cpp; sourceTree = "<group>"; };
 		DBDEDB1A192CE0A500A91DF3 /* girl-frames */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "girl-frames"; sourceTree = "<group>"; };
+		DBEEEF3C194359420038C168 /* LoadingBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingBar.cpp; path = ../Classes/LoadingBar.cpp; sourceTree = "<group>"; };
+		DBEEEF3D194359420038C168 /* LoadingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingBar.h; path = ../Classes/LoadingBar.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +355,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DBEEEF3C194359420038C168 /* LoadingBar.cpp */,
+				DBEEEF3D194359420038C168 /* LoadingBar.h */,
 				DB984F4A1941B26F00DA4384 /* picojson.h */,
 				DB9BD20F193DD19500EB3811 /* Card.cpp */,
 				DB9BD211193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.h */,
@@ -696,6 +701,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBEEEF3E194359420038C168 /* LoadingBar.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
