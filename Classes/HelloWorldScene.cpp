@@ -6,6 +6,7 @@
 #include "picojson.h"
 #include "tinyxml2/tinyxml2.h"
 #include "LoadingBar.h"
+#include "sqlite/sqlite3.h"
 
 USING_NS_CC;
 
@@ -65,7 +66,8 @@ bool HelloWorld::init()
     //this->chapter5_5();
     //this->chapter5_5_json();
     //this->chapter5_5_xml();
-    this->chapter5_6();
+    //this->chapter5_6();
+    this->chapter5_7();
     
     return true;
 }
@@ -387,5 +389,80 @@ void HelloWorld::callbackHttpRequestLoadingBarArchiveStep(float dt)
 {
     CCLOG("downloading: %d", (int)this->request->getRequestDataSize());
     CCLOG("downloading: %f", dt);
+}
+
+
+void HelloWorld::chapter5_7()
+{
+    /*
+    auto user = cocos2d::UserDefault::getInstance();
+    user->setStringForKey("name", "木内 智史之介");
+    user->setIntegerForKey("hp", 100);
+    user->setBoolForKey("connected-facebook", true);
+    user->setFloatForKey("height", 172.5);
+    user->setDoubleForKey("weight", 67.5);
+    user->flush();
+    */
+    /*
+    CCLOG("name: %s", user->getStringForKey("name").c_str());
+    CCLOG("hp: %d", user->getIntegerForKey("hp"));
+    CCLOG("bool: %d", user->getBoolForKey("connected-facebook"));
+    CCLOG("height: %f", user->getFloatForKey("height"));
+    CCLOG("weight: %f", user->getDoubleForKey("weight"));
+    */
+
+    /*
+    auto fileUtils = cocos2d::FileUtils::getInstance();
+    std::string filePath = fileUtils->getWritablePath() + "valuemap.plist";
+    cocos2d::ValueMap map;
+    map["name"] = "木内 智史之介";
+    map["hp"] = 100;
+    map["facebook-connected"] = true;
+    map["height"] = 172.5;
+    map["weight"] = 67.5;
+    fileUtils->writeToFile(map, filePath);
+
+    map = fileUtils->getValueMapFromFile(filePath);
+    CCLOG("name: %s", map["name"].asString().c_str());
+    CCLOG("hp: %d", map["hp"].asInt());
+    CCLOG("bool: %d", map["connected-facebook"].asBool());
+    CCLOG("height: %f", map["height"].asFloat());
+    CCLOG("weight: %f", map["weight"].asDouble());
+    */
+
+    
+    auto fileUtils = cocos2d::FileUtils::getInstance();
+    std::string filePath = fileUtils->getWritablePath() + "sqlite3.db";
+    CCLOG("sqlite database path: %s", filePath.c_str());
+
+    sqlite3* db;
+    auto status = sqlite3_open(filePath.c_str(), &db);
+    CCASSERT(status == SQLITE_OK, "failed to open sqlite3 database.");
+
+    // テーブル作成
+    std::string sql;
+    char* error;
+    /*
+    sql = "CREATE TABLE player(id integer primary key autoincrement, name nvarchar(128), age int(2));";
+    status = sqlite3_exec(db, sql.c_str(), NULL, NULL, &error);
+    CCASSERT(status == SQLITE_OK, error);
+    */
+
+    // インサート
+    /*
+    sql = "INSERT INTO player(name, age) VALUES('木内 智史之介', 30);";
+    status = sqlite3_exec(db, sql.c_str(), NULL, NULL, &error);
+    CCASSERT(status == SQLITE_OK, error);
+    */
+    
+    sqlite3_stmt* stmt;
+    sql = "SELECT * FROM player WHERE id = 1;";
+    status = sqlite3_prepare(db, sql.c_str(), -1, &stmt, NULL);
+    CCASSERT(status == SQLITE_OK, "failed to select.");
+    while(sqlite3_step(stmt) == SQLITE_ROW) {
+        CCLOG("id: %d", sqlite3_column_int(stmt, 0));
+        CCLOG("name: %s", sqlite3_column_text(stmt, 1));
+        CCLOG("age: %d", sqlite3_column_int(stmt, 2));
+    }
 }
 

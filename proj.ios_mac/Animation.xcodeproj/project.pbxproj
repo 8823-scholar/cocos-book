@@ -74,6 +74,8 @@
 		DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */; };
 		DB9BD210193DD19500EB3811 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20F193DD19500EB3811 /* Card.cpp */; };
 		DB9BD213193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */; };
+		DBB3AC6E194452CB005543BE /* sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DBB3AC6D194452CB005543BE /* sqlite */; };
+		DBB3AC7119445774005543BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB3AC6F194456CE005543BE /* libsqlite3.dylib */; };
 		DBDEDB1B192CE0A500A91DF3 /* girl-frames in Resources */ = {isa = PBXBuildFile; fileRef = DBDEDB1A192CE0A500A91DF3 /* girl-frames */; };
 		DBEEEF3E194359420038C168 /* LoadingBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBEEEF3C194359420038C168 /* LoadingBar.cpp */; };
 /* End PBXBuildFile section */
@@ -283,6 +285,8 @@
 		DB9BD20F193DD19500EB3811 /* Card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Card.cpp; path = ../Classes/Card.cpp; sourceTree = "<group>"; };
 		DB9BD211193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventListenerTouchOneByOneGesture.h; path = ../Classes/EventListenerTouchOneByOneGesture.h; sourceTree = "<group>"; };
 		DB9BD212193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventListenerTouchOneByOneGesture.cpp; path = ../Classes/EventListenerTouchOneByOneGesture.cpp; sourceTree = "<group>"; };
+		DBB3AC6D194452CB005543BE /* sqlite */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sqlite; path = ../Classes/sqlite; sourceTree = "<group>"; };
+		DBB3AC6F194456CE005543BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
 		DBDEDB1A192CE0A500A91DF3 /* girl-frames */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "girl-frames"; sourceTree = "<group>"; };
 		DBEEEF3C194359420038C168 /* LoadingBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingBar.cpp; path = ../Classes/LoadingBar.cpp; sourceTree = "<group>"; };
 		DBEEEF3D194359420038C168 /* LoadingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingBar.h; path = ../Classes/LoadingBar.h; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBB3AC7119445774005543BE /* libsqlite3.dylib in Frameworks */,
 				1AC6FB2E180E99EB004C840B /* libbox2d iOS.a in Frameworks */,
 				1AC6FB2F180E99EB004C840B /* libchipmunk iOS.a in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2dx iOS.a in Frameworks */,
@@ -355,6 +360,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DBB3AC6D194452CB005543BE /* sqlite */,
 				DBEEEF3C194359420038C168 /* LoadingBar.cpp */,
 				DBEEEF3D194359420038C168 /* LoadingBar.h */,
 				DB984F4A1941B26F00DA4384 /* picojson.h */,
@@ -416,6 +422,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBB3AC6F194456CE005543BE /* libsqlite3.dylib */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
 				503AE11117EB99EE00D1A890 /* libcurl.dylib */,
@@ -676,6 +683,7 @@
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
+				DBB3AC6E194452CB005543BE /* sqlite in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
