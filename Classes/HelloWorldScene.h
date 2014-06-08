@@ -13,6 +13,7 @@ public:
     CardLine* line1;
     CardLine* line2;
     LoadingBar* loadingBar;
+    cocos2d::network::HttpRequest* request;
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
@@ -36,6 +37,9 @@ public:
     virtual void callbackHttpRequestXml(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
     virtual void callbackHttpRequestLoadingBarImages(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
     virtual void callbackHttpRequestLoadingBarImage(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
+    virtual void callbackHttpRequestLoadingBarArchive(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
+    virtual void callbackHttpRequestLoadingBarArchiveDone(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
+    virtual void callbackHttpRequestLoadingBarArchiveStep(float dt);
 
     bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
 };

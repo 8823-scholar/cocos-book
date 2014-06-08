@@ -300,9 +300,15 @@ void HelloWorld::chapter5_6()
     this->addChild(this->loadingBar);
     
     auto request = new cocos2d::network::HttpRequest();
+    /*
     request->setUrl("http://befool.co.jp/images.json");
     request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
     request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequestLoadingBarImages));
+    */
+    request->setUrl("http://befool.co.jp/archive.json");
+    request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+    request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequestLoadingBarArchive));
+    
     cocos2d::network::HttpClient::getInstance()->send(request);
 }    
 void HelloWorld::callbackHttpRequestLoadingBarImages(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
@@ -345,3 +351,41 @@ void HelloWorld::callbackHttpRequestLoadingBarImage(cocos2d::network::HttpClient
     this->sprite->setScale(0.5);
     this->loadingBar->addToCurrent(1);
 }
+
+void HelloWorld::callbackHttpRequestLoadingBarArchive(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
+{
+    CCASSERT(response->isSucceed(), "failed to get json.");
+        
+    std::vector<char>* buffer = response->getResponseData();
+    const char* data = reinterpret_cast<char*>(&(buffer->front()));
+    picojson::value v;
+    std::string error;
+    picojson::parse(v, data, data + strlen(data), &error);
+    CCASSERT(error.empty(), error.c_str());
+
+    auto archive = v.get<picojson::object>()["archive"].get<picojson::object>();
+    CCLOG("archive: %s", archive["url"].get<std::string>().c_str());
+    this->loadingBar->setTotal(archive["size"].get<double>());
+
+    this->request = new cocos2d::network::HttpRequest();
+    this->request->setUrl(archive["url"].get<std::string>().c_str());
+    this->request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+    this->request->setResponseCallback(this, httpresponse_selector(HelloWorld::callbackHttpRequestLoadingBarArchiveDone));
+    cocos2d::network::HttpClient::getInstance()->send(this->request);
+
+    this->schedule(schedule_selector(HelloWorld::callbackHttpRequestLoadingBarArchiveStep));
+}
+void HelloWorld::callbackHttpRequestLoadingBarArchiveDone(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response)
+{
+    CCASSERT(response->isSucceed(), "failed to get archive.");
+
+    CCLOG("archive download done.");
+    this->unschedule(schedule_selector(HelloWorld::callbackHttpRequestLoadingBarArchiveStep));
+    CCLOG("downloading: %d", (int)this->request->getRequestDataSize());
+}
+void HelloWorld::callbackHttpRequestLoadingBarArchiveStep(float dt)
+{
+    CCLOG("downloading: %d", (int)this->request->getRequestDataSize());
+    CCLOG("downloading: %f", dt);
+}
+
