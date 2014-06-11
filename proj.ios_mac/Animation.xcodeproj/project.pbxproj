@@ -70,6 +70,7 @@
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
 		DB3839D3192C58CC004D2140 /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = DB3839D2192C58CC004D2140 /* girl.png */; };
+		DB4B800D19471563008BE13D /* snowboard-spine in Resources */ = {isa = PBXBuildFile; fileRef = DB4B800C19471563008BE13D /* snowboard-spine */; };
 		DB9BD208193DAD6100EB3811 /* tramp in Resources */ = {isa = PBXBuildFile; fileRef = DB9BD207193DAD6100EB3811 /* tramp */; };
 		DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */; };
 		DB9BD210193DD19500EB3811 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20F193DD19500EB3811 /* Card.cpp */; };
@@ -77,6 +78,7 @@
 		DBB3AC6E194452CB005543BE /* sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DBB3AC6D194452CB005543BE /* sqlite */; };
 		DBB3AC7119445774005543BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB3AC6F194456CE005543BE /* libsqlite3.dylib */; };
 		DBDEDB1B192CE0A500A91DF3 /* girl-frames in Resources */ = {isa = PBXBuildFile; fileRef = DBDEDB1A192CE0A500A91DF3 /* girl-frames */; };
+		DBE269DF1945608400C7AE3D /* girl-spine in Resources */ = {isa = PBXBuildFile; fileRef = DBE269DE1945608400C7AE3D /* girl-spine */; };
 		DBEEEF3E194359420038C168 /* LoadingBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBEEEF3C194359420038C168 /* LoadingBar.cpp */; };
 /* End PBXBuildFile section */
 
@@ -277,6 +279,7 @@
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		DB3839D2192C58CC004D2140 /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
+		DB4B800C19471563008BE13D /* snowboard-spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "snowboard-spine"; sourceTree = "<group>"; };
 		DB984F4A1941B26F00DA4384 /* picojson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picojson.h; path = ../Classes/picojson.h; sourceTree = "<group>"; };
 		DB9BD207193DAD6100EB3811 /* tramp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tramp; sourceTree = "<group>"; };
 		DB9BD20B193DB50000EB3811 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = ../Classes/Card.h; sourceTree = "<group>"; };
@@ -288,6 +291,7 @@
 		DBB3AC6D194452CB005543BE /* sqlite */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sqlite; path = ../Classes/sqlite; sourceTree = "<group>"; };
 		DBB3AC6F194456CE005543BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
 		DBDEDB1A192CE0A500A91DF3 /* girl-frames */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "girl-frames"; sourceTree = "<group>"; };
+		DBE269DE1945608400C7AE3D /* girl-spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "girl-spine"; sourceTree = "<group>"; };
 		DBEEEF3C194359420038C168 /* LoadingBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingBar.cpp; path = ../Classes/LoadingBar.cpp; sourceTree = "<group>"; };
 		DBEEEF3D194359420038C168 /* LoadingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingBar.h; path = ../Classes/LoadingBar.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -490,6 +494,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DB4B800C19471563008BE13D /* snowboard-spine */,
+				DBE269DE1945608400C7AE3D /* girl-spine */,
 				DB9BD207193DAD6100EB3811 /* tramp */,
 				DBDEDB1A192CE0A500A91DF3 /* girl-frames */,
 				DB3839D2192C58CC004D2140 /* girl.png */,
@@ -669,6 +675,7 @@
 				DB3839D3192C58CC004D2140 /* girl.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				DBE269DF1945608400C7AE3D /* girl-spine in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				DBDEDB1B192CE0A500A91DF3 /* girl-frames in Resources */,
@@ -681,6 +688,7 @@
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
+				DB4B800D19471563008BE13D /* snowboard-spine in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				DBB3AC6E194452CB005543BE /* sqlite in Resources */,

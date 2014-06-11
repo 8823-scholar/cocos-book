@@ -5,6 +5,7 @@
 #include "CardLine.h"
 #include "HttpClient.h"
 #include "LoadingBar.h"
+#include "spine/spine-cocos2dx.h"
 
 class HelloWorld : public cocos2d::LayerColor
 {
@@ -33,6 +34,7 @@ public:
     virtual void chapter5_6();
     virtual void chapter5_7();
     virtual void chapter5_8();
+    virtual void chapter5_9();
     virtual void initCards();
     virtual void callbackHttpRequest(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
     virtual void callbackHttpRequestJson(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
@@ -42,6 +44,7 @@ public:
     virtual void callbackHttpRequestLoadingBarArchive(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
     virtual void callbackHttpRequestLoadingBarArchiveDone(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
     virtual void callbackHttpRequestLoadingBarArchiveStep(float dt);
+    virtual void onAnimationStateEvent(spine::SkeletonAnimation* node, int trackIndex, spEventType type, spEvent* event, int loopCount);
     virtual void initPhysics();
 
     bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);

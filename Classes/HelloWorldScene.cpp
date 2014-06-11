@@ -7,15 +7,17 @@
 #include "tinyxml2/tinyxml2.h"
 #include "LoadingBar.h"
 #include "sqlite/sqlite3.h"
+#include "spine/spine-cocos2dx.h"
 
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
 {
-    auto scene = Scene::createWithPhysics();
+    //auto scene = Scene::createWithPhysics();
+    auto scene = Scene::create();
     auto layer = HelloWorld::create();
     scene->addChild(layer);
-    layer->initPhysics();
+    //layer->initPhysics();
 
     return scene;
 }
@@ -70,7 +72,8 @@ bool HelloWorld::init()
     //this->chapter5_5_xml();
     //this->chapter5_6();
     //this->chapter5_7();
-    this->chapter5_8();
+    //this->chapter5_8();
+    this->chapter5_9();
     
     return true;
 }
@@ -571,5 +574,53 @@ void HelloWorld::initPhysics()
     world->setGravity(gravity);
     //world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     world->setSpeed(6.0f);
+}
+
+void HelloWorld::chapter5_9()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();
+
+    auto girl = spine::SkeletonAnimation::createWithFile("girl-spine/skeleton.json", "girl-spine/skeleton.atlas");
+    girl->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y - 200));
+    this->addChild(girl);
+
+    girl->debugBones = true;
+    girl->findBone("left_leg")->rotation = 90;
+    girl->setMix("skill2", "idle", 1.0f);
+    auto hoge = girl->setAnimation(0, "skill2", false);
+    //girl->addAnimation(0, "run", true, 3.0f);
+    girl->addAnimation(0, "idle", true, hoge->animation->duration);
+    //girl->setAnimation(1, "idle", true);
+
+    //girl->setAnimationListener(this, animationStateEvent_selector(HelloWorld::onAnimationStateEvent));
+    girl->setAnimationListener(this, spine::SEL_AnimationStateEvent(&HelloWorld::onAnimationStateEvent));
+    
+    /*
+    auto boarder = spine::SkeletonAnimation::createWithFile("snowboard-spine/skeleton.json", "snowboard-spine/skeleton.atlas");
+    boarder->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y - 200));
+    this->addChild(boarder);
+    */
+}
+    
+void HelloWorld::onAnimationStateEvent(spine::SkeletonAnimation* node, int trackIndex, spEventType type, spEvent *event, int loopCount)
+{
+    switch (type) {
+        case ANIMATION_START:
+            CCLOG("animation started.");
+            break;
+        case ANIMATION_END:
+            CCLOG("animation ended(or aborted).");
+            break;
+        case ANIMATION_COMPLETE:
+            CCLOG("animation completed.");
+            break;
+        case ANIMATION_EVENT:
+            CCLOG("animation custom event.");
+            if (strcmp(event->data->name, "jump") == 0) {
+                CCLOG("jump! integer:%d, float:%f, string:%s", event->intValue, event->floatValue, event->stringValue);
+            }
+            break;
+    }
 }
 

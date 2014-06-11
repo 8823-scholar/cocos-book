@@ -1,0 +1,160 @@
+
+skeleton.png
+size: 1015,504
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+_0001_boad
+  rotate: false
+  xy: 2, 449
+  size: 498, 55
+  orig: 498, 55
+  offset: 0, 0
+  index: -1
+_0002_nitto
+  rotate: false
+  xy: 2, 69
+  size: 199, 166
+  orig: 199, 166
+  offset: 0, 0
+  index: -1
+_0003_heir_02
+  rotate: false
+  xy: 967, 369
+  size: 48, 135
+  orig: 48, 135
+  offset: 0, 0
+  index: -1
+_0004_heir_01
+  rotate: false
+  xy: 778, 200
+  size: 107, 126
+  orig: 107, 126
+  offset: 0, 0
+  index: -1
+_0005_head
+  rotate: false
+  xy: 211, 271
+  size: 187, 176
+  orig: 187, 176
+  offset: 0, 0
+  index: -1
+_0005_head_02
+  rotate: false
+  xy: 400, 271
+  size: 187, 176
+  orig: 187, 176
+  offset: 0, 0
+  index: -1
+_0005_head_03
+  rotate: false
+  xy: 589, 328
+  size: 187, 176
+  orig: 187, 176
+  offset: 0, 0
+  index: -1
+_0005_head_04
+  rotate: false
+  xy: 778, 328
+  size: 187, 176
+  orig: 187, 176
+  offset: 0, 0
+  index: -1
+_0005_head_05
+  rotate: false
+  xy: 589, 150
+  size: 187, 176
+  orig: 187, 176
+  offset: 0, 0
+  index: -1
+_0006_heir_04
+  rotate: true
+  xy: 360, 194
+  size: 75, 142
+  orig: 75, 142
+  offset: 0, 0
+  index: -1
+_0007_right_arm
+  rotate: false
+  xy: 880, 134
+  size: 95, 58
+  orig: 95, 60
+  offset: 0, 2
+  index: -1
+_0008_right_arm_02
+  rotate: true
+  xy: 287, 83
+  size: 98, 60
+  orig: 98, 60
+  offset: 0, 0
+  index: -1
+_0009_right_hand
+  rotate: false
+  xy: 287, 34
+  size: 57, 47
+  orig: 57, 47
+  offset: 0, 0
+  index: -1
+_0010_body
+  rotate: false
+  xy: 2, 237
+  size: 207, 210
+  orig: 207, 210
+  offset: 0, 0
+  index: -1
+_0011_left_arm_02
+  rotate: true
+  xy: 504, 178
+  size: 91, 59
+  orig: 91, 59
+  offset: 0, 0
+  index: -1
+_0012_left_hand
+  rotate: true
+  xy: 502, 450
+  size: 54, 57
+  orig: 54, 57
+  offset: 0, 0
+  index: -1
+_0013_left_arm
+  rotate: false
+  xy: 778, 148
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+_0014_left_foot
+  rotate: true
+  xy: 2, 2
+  size: 65, 125
+  orig: 65, 125
+  offset: 0, 0
+  index: -1
+_0015_left_reg
+  rotate: false
+  xy: 887, 194
+  size: 89, 132
+  orig: 89, 132
+  offset: 0, 0
+  index: -1
+_0016_right_foot
+  rotate: false
+  xy: 203, 72
+  size: 82, 109
+  orig: 82, 109
+  offset: 0, 0
+  index: -1
+_0017_right_reg
+  rotate: true
+  xy: 211, 183
+  size: 86, 147
+  orig: 86, 147
+  offset: 0, 0
+  index: -1
+_0018_heir_03
+  rotate: false
+  xy: 129, 2
+  size: 64, 65
+  orig: 64, 65
+  offset: 0, 0
+  index: -1

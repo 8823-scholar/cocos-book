@@ -41,7 +41,7 @@ namespace spine {
 
 class SkeletonAnimation;
 typedef void (cocos2d::Ref::*SEL_AnimationStateEvent)(spine::SkeletonAnimation* node, int trackIndex, spEventType type, spEvent* event, int loopCount);
-#define animationStateEvent_selector(_SELECTOR) (SEL_AnimationStateEvent)(&_SELECTOR)
+#define animationStateEvent_selector(_SELECTOR) (spine::SEL_AnimationStateEvent)(&_SELECTOR)
 
 /** Draws an animated skeleton, providing an AnimationState for applying one or more animations and queuing animations to be
   * played later. */

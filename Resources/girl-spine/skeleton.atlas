@@ -1,0 +1,173 @@
+
+skeleton.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0430test_girl/png_jpg/01_left_hand
+  rotate: true
+  xy: 452, 67
+  size: 54, 74
+  orig: 54, 74
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/02_left_arm
+  rotate: true
+  xy: 789, 708
+  size: 39, 50
+  orig: 39, 50
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/03_head
+  rotate: false
+  xy: 2, 662
+  size: 212, 360
+  orig: 212, 360
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/03_head_eisyo1
+  rotate: false
+  xy: 2, 300
+  size: 212, 360
+  orig: 212, 360
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/03_head_eisyo2
+  rotate: false
+  xy: 216, 662
+  size: 212, 360
+  orig: 212, 360
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/03_head_eye
+  rotate: false
+  xy: 216, 300
+  size: 212, 360
+  orig: 212, 360
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/03_head_glad
+  rotate: true
+  xy: 2, 86
+  size: 212, 360
+  orig: 212, 360
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/03_head_sad
+  rotate: false
+  xy: 430, 662
+  size: 212, 360
+  orig: 212, 360
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/03_head_skill
+  rotate: false
+  xy: 430, 300
+  size: 212, 360
+  orig: 212, 360
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/04_neck
+  rotate: true
+  xy: 629, 279
+  size: 19, 12
+  orig: 19, 12
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/05body
+  rotate: false
+  xy: 644, 708
+  size: 143, 139
+  orig: 143, 139
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/06_left_leg
+  rotate: true
+  xy: 910, 953
+  size: 69, 109
+  orig: 69, 109
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/07_left_foot
+  rotate: false
+  xy: 364, 59
+  size: 86, 62
+  orig: 86, 62
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/08_right_leg
+  rotate: false
+  xy: 644, 475
+  size: 68, 109
+  orig: 68, 109
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/09_right_foot
+  rotate: false
+  xy: 274, 22
+  size: 88, 62
+  orig: 88, 62
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/10_right_arm
+  rotate: false
+  xy: 756, 661
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/11_right_hand
+  rotate: false
+  xy: 644, 397
+  size: 56, 76
+  orig: 56, 76
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/12_item
+  rotate: false
+  xy: 644, 586
+  size: 110, 120
+  orig: 110, 120
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/13_back_hair
+  rotate: false
+  xy: 789, 749
+  size: 91, 98
+  orig: 91, 98
+  offset: 0, 0
+  index: -1
+0430test_girl/png_jpg/jin_0
+  rotate: false
+  xy: 644, 849
+  size: 256, 86
+  orig: 300, 90
+  offset: 24, 4
+  index: -1
+0430test_girl/png_jpg/jin_135
+  rotate: false
+  xy: 644, 937
+  size: 264, 85
+  orig: 300, 90
+  offset: 18, 2
+  index: -1
+0430test_girl/png_jpg/jin_180
+  rotate: false
+  xy: 364, 123
+  size: 256, 87
+  orig: 300, 90
+  offset: 22, 2
+  index: -1
+0430test_girl/png_jpg/jin_45
+  rotate: false
+  xy: 364, 212
+  size: 263, 86
+  orig: 300, 90
+  offset: 26, 3
+  index: -1
+0430test_girl/png_jpg/jin_90
+  rotate: false
+  xy: 2, 2
+  size: 270, 82
+  orig: 300, 90
+  offset: 20, 5
+  index: -1
