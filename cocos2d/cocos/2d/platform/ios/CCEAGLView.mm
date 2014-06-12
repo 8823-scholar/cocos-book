@@ -74,6 +74,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import "CCIMEDispatcher.h"
 #import "OpenGL_Internal.h"
 #import "CCGLView.h"
+#import <MediaPlayer/MediaPlayer.h>
 //CLASS IMPLEMENTATIONS:
 
 #define IOS_MAX_TOUCHES_COUNT     10
@@ -911,6 +912,45 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     if (self.keyboardShowNotification != nil)
     {
         [[NSNotificationCenter defaultCenter]postNotification:self.keyboardShowNotification];
+    }
+}
+
+
+- (void) playVideo:(NSString *)path
+{
+    NSURL                           *url;
+
+    url                         =   [NSURL fileURLWithPath:path];
+    moviePlayer                 =   [[MPMoviePlayerController alloc] initWithContentURL:url];
+    moviePlayer.view.frame      =   CGRectMake(0, 0, self.frame.size.height, self.frame.size.width);
+    moviePlayer.fullscreen      =   YES;
+    moviePlayer.scalingMode     =   MPMovieScalingModeNone;
+    moviePlayer.controlStyle    =   MPMovieControlStyleNone;
+    [self                           addSubview:moviePlayer.view];
+    [moviePlayer                    play];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(removeVideo)
+                                                 name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
+}
+
+- (void) removeVideo
+{
+    if (moviePlayer.playbackState == MPMoviePlaybackStatePaused || moviePlayer.playbackState == MPMoviePlaybackStateStopped) {
+
+        NSLog(@"Remove Video");
+
+        [moviePlayer.view           removeFromSuperview];
+        [moviePlayer                release];
+        moviePlayer             =   nil;
+
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:MPMoviePlayerPlaybackStateDidChangeNotification
+                                                      object:nil];
+
+        if (cocos2d::Director::getInstance()->isPaused()) {
+            cocos2d::Director::getInstance()->resume();
+        }
     }
 }
 

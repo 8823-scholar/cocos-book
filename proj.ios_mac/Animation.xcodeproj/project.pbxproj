@@ -71,6 +71,8 @@
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
 		DB3839D3192C58CC004D2140 /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = DB3839D2192C58CC004D2140 /* girl.png */; };
 		DB4B800D19471563008BE13D /* snowboard-spine in Resources */ = {isa = PBXBuildFile; fileRef = DB4B800C19471563008BE13D /* snowboard-spine */; };
+		DB4B8011194892EF008BE13D /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DB4B8010194892EF008BE13D /* sample.mp4 */; };
+		DB4B80121948A0E8008BE13D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B800E19484461008BE13D /* MediaPlayer.framework */; };
 		DB9BD208193DAD6100EB3811 /* tramp in Resources */ = {isa = PBXBuildFile; fileRef = DB9BD207193DAD6100EB3811 /* tramp */; };
 		DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */; };
 		DB9BD210193DD19500EB3811 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20F193DD19500EB3811 /* Card.cpp */; };
@@ -280,6 +282,8 @@
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		DB3839D2192C58CC004D2140 /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
 		DB4B800C19471563008BE13D /* snowboard-spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "snowboard-spine"; sourceTree = "<group>"; };
+		DB4B800E19484461008BE13D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
+		DB4B8010194892EF008BE13D /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 		DB984F4A1941B26F00DA4384 /* picojson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picojson.h; path = ../Classes/picojson.h; sourceTree = "<group>"; };
 		DB9BD207193DAD6100EB3811 /* tramp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tramp; sourceTree = "<group>"; };
 		DB9BD20B193DB50000EB3811 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = ../Classes/Card.h; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB4B80121948A0E8008BE13D /* MediaPlayer.framework in Frameworks */,
 				DBB3AC7119445774005543BE /* libsqlite3.dylib in Frameworks */,
 				1AC6FB2E180E99EB004C840B /* libbox2d iOS.a in Frameworks */,
 				1AC6FB2F180E99EB004C840B /* libchipmunk iOS.a in Frameworks */,
@@ -426,6 +431,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB4B800E19484461008BE13D /* MediaPlayer.framework */,
 				DBB3AC6F194456CE005543BE /* libsqlite3.dylib */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
@@ -494,6 +500,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DB4B8010194892EF008BE13D /* sample.mp4 */,
 				DB4B800C19471563008BE13D /* snowboard-spine */,
 				DBE269DE1945608400C7AE3D /* girl-spine */,
 				DB9BD207193DAD6100EB3811 /* tramp */,
@@ -676,6 +683,7 @@
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				DBE269DF1945608400C7AE3D /* girl-spine in Resources */,
+				DB4B8011194892EF008BE13D /* sample.mp4 in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				DBDEDB1B192CE0A500A91DF3 /* girl-frames in Resources */,

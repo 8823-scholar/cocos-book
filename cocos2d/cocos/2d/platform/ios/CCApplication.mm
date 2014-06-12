@@ -31,6 +31,9 @@
 
 #import "CCGeometry.h"
 #import "CCDirectorCaller.h"
+#import "CCDirector.h"
+#import "CCGLView.h"
+#import "CCEAGLView.h"
 
 NS_CC_BEGIN
 
@@ -169,6 +172,19 @@ Application::Platform Application::getTargetPlatform()
 
 void Application::applicationScreenSizeChanged(int newWidth, int newHeight) {
 
+}
+
+
+void Application::playVideo(const char* path, const char* type)
+{
+    NSString *videoPath, *stringPath, *stringType;
+
+    stringPath = [NSString stringWithUTF8String:path];
+    stringType = [NSString stringWithUTF8String:type];
+    videoPath = [[NSBundle mainBundle] pathForResource:stringPath ofType:stringType];
+    
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    [(CCEAGLView*)director->getOpenGLView()->getEAGLView() playVideo:videoPath];
 }
 
 NS_CC_END

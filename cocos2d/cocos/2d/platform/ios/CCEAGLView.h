@@ -73,6 +73,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import "CCESRenderer.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+
 //CLASS INTERFACE:
 
 /** CCEAGLView Class.
@@ -102,6 +104,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     CGRect                  originalRect_;
     NSNotification*         keyboardShowNotification_;
     BOOL                    isKeyboardShown_;
+    MPMoviePlayerController* moviePlayer;
 }
 
 @property(nonatomic, readonly) UITextPosition *beginningOfDocument;
@@ -154,6 +157,9 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 -(void) doAnimationWhenKeyboardMoveWithDuration:(float) duration distance:(float) dis;
 -(void) doAnimationWhenAnotherEditBeClicked;
+
+-(void) playVideo:(NSString *)path;
+-(void) removeVideo;
 @end
 
 #endif // CC_PLATFORM_IOS

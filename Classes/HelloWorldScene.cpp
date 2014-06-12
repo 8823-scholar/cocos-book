@@ -73,7 +73,8 @@ bool HelloWorld::init()
     //this->chapter5_6();
     //this->chapter5_7();
     //this->chapter5_8();
-    this->chapter5_9();
+    //this->chapter5_9();
+    this->chapter5_11();
     
     return true;
 }
@@ -624,3 +625,9 @@ void HelloWorld::onAnimationStateEvent(spine::SkeletonAnimation* node, int track
     }
 }
 
+
+void HelloWorld::chapter5_11()
+{
+    auto app = cocos2d::Application::getInstance();
+    app->playVideo("sample", "mp4");
+}

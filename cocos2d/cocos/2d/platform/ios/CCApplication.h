@@ -93,6 +93,9 @@ public:
 	*/
 	virtual void applicationScreenSizeChanged(int newWidth, int newHeight);
 
+
+    virtual void playVideo(const char* path, const char* type);
+
 protected:
     static Application * sm_pSharedApplication;
 };
