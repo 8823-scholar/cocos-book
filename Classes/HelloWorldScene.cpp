@@ -8,6 +8,7 @@
 #include "LoadingBar.h"
 #include "sqlite/sqlite3.h"
 #include "spine/spine-cocos2dx.h"
+#include "VideoPlayer.h"
 
 USING_NS_CC;
 
@@ -628,6 +629,6 @@ void HelloWorld::onAnimationStateEvent(spine::SkeletonAnimation* node, int track
 
 void HelloWorld::chapter5_11()
 {
-    auto app = cocos2d::Application::getInstance();
-    app->playVideo("sample", "mp4");
+    auto player = VideoPlayer::create();
+    player->play("sample", "mp4");
 }

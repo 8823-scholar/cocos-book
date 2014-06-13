@@ -73,6 +73,8 @@
 		DB4B800D19471563008BE13D /* snowboard-spine in Resources */ = {isa = PBXBuildFile; fileRef = DB4B800C19471563008BE13D /* snowboard-spine */; };
 		DB4B8011194892EF008BE13D /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DB4B8010194892EF008BE13D /* sample.mp4 */; };
 		DB4B80121948A0E8008BE13D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B800E19484461008BE13D /* MediaPlayer.framework */; };
+		DB4B8017194ABA1C008BE13D /* VideoPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4B8014194ABA1C008BE13D /* VideoPlayer.mm */; };
+		DB4B8018194ABA1C008BE13D /* VideoPlayerIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4B8015194ABA1C008BE13D /* VideoPlayerIOS.mm */; };
 		DB9BD208193DAD6100EB3811 /* tramp in Resources */ = {isa = PBXBuildFile; fileRef = DB9BD207193DAD6100EB3811 /* tramp */; };
 		DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */; };
 		DB9BD210193DD19500EB3811 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20F193DD19500EB3811 /* Card.cpp */; };
@@ -284,6 +286,10 @@
 		DB4B800C19471563008BE13D /* snowboard-spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "snowboard-spine"; sourceTree = "<group>"; };
 		DB4B800E19484461008BE13D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		DB4B8010194892EF008BE13D /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
+		DB4B8013194ABA1C008BE13D /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoPlayer.h; path = ../Classes/VideoPlayer.h; sourceTree = "<group>"; };
+		DB4B8014194ABA1C008BE13D /* VideoPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = VideoPlayer.mm; path = ../Classes/VideoPlayer.mm; sourceTree = "<group>"; };
+		DB4B8015194ABA1C008BE13D /* VideoPlayerIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = VideoPlayerIOS.mm; path = ../Classes/VideoPlayerIOS.mm; sourceTree = "<group>"; };
+		DB4B8016194ABA1C008BE13D /* VideoPlayerIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoPlayerIOS.h; path = ../Classes/VideoPlayerIOS.h; sourceTree = "<group>"; };
 		DB984F4A1941B26F00DA4384 /* picojson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picojson.h; path = ../Classes/picojson.h; sourceTree = "<group>"; };
 		DB9BD207193DAD6100EB3811 /* tramp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tramp; sourceTree = "<group>"; };
 		DB9BD20B193DB50000EB3811 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = ../Classes/Card.h; sourceTree = "<group>"; };
@@ -369,6 +375,10 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DB4B8013194ABA1C008BE13D /* VideoPlayer.h */,
+				DB4B8014194ABA1C008BE13D /* VideoPlayer.mm */,
+				DB4B8015194ABA1C008BE13D /* VideoPlayerIOS.mm */,
+				DB4B8016194ABA1C008BE13D /* VideoPlayerIOS.h */,
 				DBB3AC6D194452CB005543BE /* sqlite */,
 				DBEEEF3C194359420038C168 /* LoadingBar.cpp */,
 				DBEEEF3D194359420038C168 /* LoadingBar.h */,
@@ -733,6 +743,8 @@
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 				DB9BD210193DD19500EB3811 /* Card.cpp in Sources */,
+				DB4B8017194ABA1C008BE13D /* VideoPlayer.mm in Sources */,
+				DB4B8018194ABA1C008BE13D /* VideoPlayerIOS.mm in Sources */,
 				DB9BD213193F0D8500EB3811 /* EventListenerTouchOneByOneGesture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
