@@ -163,7 +163,7 @@ namespace picojson {
 #ifdef _MSC_VER
         ! _finite(n)
 #else
-        isnan(n) || isinf(n)
+        isnan(n)
 #endif
         ) {
       throw std::overflow_error("");
@@ -320,7 +320,7 @@ namespace picojson {
       double tmp;
       SNPRINTF(buf, sizeof(buf), fabs(u_.number_) < (1ULL << 53) && modf(u_.number_, &tmp) == 0 ? "%.f" : "%.17g", u_.number_);
 #if PICOJSON_USE_LOCALE
-      char *decimal_point = localeconv()->decimal_point;
+      const char *decimal_point = ".";
       if (strcmp(decimal_point, ".") != 0) {
         size_t decimal_point_len = strlen(decimal_point);
         for (char *p = buf; *p != '\0'; ++p) {
@@ -674,7 +674,7 @@ namespace picojson {
 	num_str.push_back(ch);
       } else if (ch == '.') {
 #if PICOJSON_USE_LOCALE
-        num_str += localeconv()->decimal_point;
+        num_str.push_back('.');
 #else
         num_str.push_back('.');
 #endif

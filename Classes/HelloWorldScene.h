@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "CardLine.h"
-#include "HttpClient.h"
+#include "network/HttpClient.h"
 #include "LoadingBar.h"
 #include "spine/spine-cocos2dx.h"
 

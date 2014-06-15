@@ -10,26 +10,25 @@
 
 -(id) init
 {
+    auto director = cocos2d::Director::getInstance();
+    CCEAGLView* eaglview = (CCEAGLView*)director->getOpenGLView()->getEAGLView();
+
+    self.controller = [[MPMoviePlayerController alloc] init];
+    self.controller.view.frame = CGRectMake(0, 0, eaglview.frame.size.height, eaglview.frame.size.width);
+    self.controller.fullscreen = YES;
+    self.controller.scalingMode = MPMovieScalingModeNone;
+    self.controller.controlStyle = MPMovieControlStyleNone;
+
     return self;
 }
 
 -(void) play:(NSString *)path
 {
-    auto director = cocos2d::Director::getInstance();
-    auto visibleSize = director->getVisibleSize();
-    CCEAGLView* eaglview = (CCEAGLView*)director->getOpenGLView()->getEAGLView();
-
     NSURL* url = [NSURL fileURLWithPath:path];
-    self.controller = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    //self.controller.view.frame = CGRectMake(0, 0, visibleSize.height, visibleSize.width);
-    self.controller.view.frame = CGRectMake(0, 0, eaglview.frame.size.height, eaglview.frame.size.width);
-    self.controller.fullscreen = YES;
-    self.controller.scalingMode = MPMovieScalingModeNone;
-    self.controller.controlStyle = MPMovieControlStyleNone;
+    self.controller.contentURL = url;
     [self.controller play];
 
-    auto view = self.controller.view;
-    [eaglview addSubview:self.controller.view];
+    [(CCEAGLView*)cocos2d::Director::getInstance()->getOpenGLView()->getEAGLView() addSubview:self.controller.view];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(remove)
@@ -43,8 +42,6 @@
         NSLog(@"Remove Video");
 
         [self.controller.view removeFromSuperview];
-        [self.controller release];
-        self.controller = nil;
 
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:MPMoviePlayerPlaybackStateDidChangeNotification

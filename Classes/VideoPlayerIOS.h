@@ -1,4 +1,3 @@
-#include "cocos2d.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface VideoPlayerWrapper : NSObject
@@ -10,7 +9,6 @@
 @property (nonatomic, retain) MPMoviePlayerController* controller;
 
 -(id) init;
-//virtual void play(const char* path, const char* type);
 -(void) play:(NSString *) path;
 -(void) remove;
 

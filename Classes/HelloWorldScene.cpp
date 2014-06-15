@@ -1,7 +1,7 @@
 #include "HelloWorldScene.h"
 #include "Card.h"
 #include "CardLine.h"
-#include "HttpClient.h"
+#include "network/HttpClient.h"
 #include "spine/Json.h"
 #include "picojson.h"
 #include "tinyxml2/tinyxml2.h"
