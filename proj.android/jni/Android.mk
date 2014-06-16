@@ -20,11 +20,13 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
 LOCAL_CPPFLAGS += -fexceptions
 
+$(call import-add-path,../webview_plugin)
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_WHOLE_STATIC_LIBRARIES += box2d_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_network_static
 LOCAL_WHOLE_STATIC_LIBRARIES += spine_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cocos_webview_plugin_static
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -33,3 +35,4 @@ $(call import-module,audio/android)
 $(call import-module,Box2D)
 $(call import-module,network)
 $(call import-module,editor-support/spine)
+$(call import-module,webview_plugin/android)

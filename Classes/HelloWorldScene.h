@@ -36,6 +36,7 @@ public:
     virtual void chapter5_8();
     virtual void chapter5_9();
     virtual void chapter5_11();
+    virtual void chapter5_12();
     virtual void initCards();
     virtual void callbackHttpRequest(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);
     virtual void callbackHttpRequestJson(cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response);

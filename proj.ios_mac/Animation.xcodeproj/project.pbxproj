@@ -75,6 +75,7 @@
 		DB4B80121948A0E8008BE13D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B800E19484461008BE13D /* MediaPlayer.framework */; };
 		DB4B8017194ABA1C008BE13D /* VideoPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4B8014194ABA1C008BE13D /* VideoPlayer.mm */; };
 		DB4B8018194ABA1C008BE13D /* VideoPlayerIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4B8015194ABA1C008BE13D /* VideoPlayerIOS.mm */; };
+		DB4B804A194EC451008BE13D /* CCWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4B8049194EC451008BE13D /* CCWebView.mm */; };
 		DB9BD208193DAD6100EB3811 /* tramp in Resources */ = {isa = PBXBuildFile; fileRef = DB9BD207193DAD6100EB3811 /* tramp */; };
 		DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20D193DC9EE00EB3811 /* CardLine.cpp */; };
 		DB9BD210193DD19500EB3811 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9BD20F193DD19500EB3811 /* Card.cpp */; };
@@ -85,6 +86,18 @@
 		DBE269DF1945608400C7AE3D /* girl-spine in Resources */ = {isa = PBXBuildFile; fileRef = DBE269DE1945608400C7AE3D /* girl-spine */; };
 		DBEEEF3E194359420038C168 /* LoadingBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBEEEF3C194359420038C168 /* LoadingBar.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		DB4B8042194EC25C008BE13D /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		1AC6FAF8180E9839004C840B /* PBXContainerItemProxy */ = {
@@ -290,6 +303,8 @@
 		DB4B8014194ABA1C008BE13D /* VideoPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = VideoPlayer.mm; path = ../Classes/VideoPlayer.mm; sourceTree = "<group>"; };
 		DB4B8015194ABA1C008BE13D /* VideoPlayerIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = VideoPlayerIOS.mm; path = ../Classes/VideoPlayerIOS.mm; sourceTree = "<group>"; };
 		DB4B8016194ABA1C008BE13D /* VideoPlayerIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoPlayerIOS.h; path = ../Classes/VideoPlayerIOS.h; sourceTree = "<group>"; };
+		DB4B8048194EC444008BE13D /* CCWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCWebView.h; path = ../webview_plugin/webview_plugin/include/CCWebView.h; sourceTree = "<group>"; };
+		DB4B8049194EC451008BE13D /* CCWebView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCWebView.mm; path = ../webview_plugin/webview_plugin/ios/CCWebView.mm; sourceTree = "<group>"; };
 		DB984F4A1941B26F00DA4384 /* picojson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picojson.h; path = ../Classes/picojson.h; sourceTree = "<group>"; };
 		DB9BD207193DAD6100EB3811 /* tramp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tramp; sourceTree = "<group>"; };
 		DB9BD20B193DB50000EB3811 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = ../Classes/Card.h; sourceTree = "<group>"; };
@@ -427,6 +442,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				DB4B8047194EC40E008BE13D /* webview_plugin */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
 				15AA9C4015B7EC450033D6C2 /* Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -524,6 +540,15 @@
 			path = ../Resources;
 			sourceTree = "<group>";
 		};
+		DB4B8047194EC40E008BE13D /* webview_plugin */ = {
+			isa = PBXGroup;
+			children = (
+				DB4B8049194EC451008BE13D /* CCWebView.mm */,
+				DB4B8048194EC444008BE13D /* CCWebView.h */,
+			);
+			name = webview_plugin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -534,8 +559,10 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				DB4B8043194EC2B5008BE13D /* ShellScript */,
 			);
 			buildRules = (
+				DB4B8042194EC25C008BE13D /* PBXBuildRule */,
 			);
 			dependencies = (
 				1AC6FB25180E99E1004C840B /* PBXTargetDependency */,
@@ -730,6 +757,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DB4B8043194EC2B5008BE13D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "env > env.txt";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -738,6 +781,7 @@
 				DBEEEF3E194359420038C168 /* LoadingBar.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				DB9BD20E193DC9EE00EB3811 /* CardLine.cpp in Sources */,
+				DB4B804A194EC451008BE13D /* CCWebView.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,

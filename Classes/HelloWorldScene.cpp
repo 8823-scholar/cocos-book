@@ -9,6 +9,7 @@
 #include "sqlite/sqlite3.h"
 #include "spine/spine-cocos2dx.h"
 #include "VideoPlayer.h"
+#include "CCWebView.h"
 
 USING_NS_CC;
 
@@ -75,7 +76,8 @@ bool HelloWorld::init()
     //this->chapter5_7();
     //this->chapter5_8();
     //this->chapter5_9();
-    this->chapter5_11();
+    //this->chapter5_11();
+    this->chapter5_12();
     
     return true;
 }
@@ -632,3 +634,16 @@ void HelloWorld::chapter5_11()
     auto player = VideoPlayer::create();
     player->play("sample", "mp4");
 }
+
+
+void HelloWorld::chapter5_12()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();
+
+    auto* webview = cocos2d::webview_plugin::CCWebView::create();
+    webview->setRect(origin.x, origin.y, visibleSize.width, visibleSize.height);
+    webview->setVisibility(true);
+    webview->loadUrl("http://befool.co.jp/");
+}
+

@@ -24,6 +24,8 @@ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
+import org.cocos2dx.lib.gree.webview.Cocos2dxWebView;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
@@ -124,6 +126,7 @@ public class Cocos2dxHelper {
     
             Cocos2dxBitmap.setContext(activity);
             Cocos2dxETCLoader.setContext(activity);
+            Cocos2dxWebView.setContext(activity);
             sActivity = activity;
 
             sInited = true;
