@@ -169,5 +169,7 @@ set_target_properties(${APP_NAME} PROPERTIES
 pre_build(${APP_NAME}
   COMMAND ${CMAKE_COMMAND} -E remove_directory ${APP_BIN_DIR}/Resources
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources ${APP_BIN_DIR}/Resources
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources/src ${APP_BIN_DIR}/Resources/src
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${COCOS2D_ROOT}/scripting/lua-bindings/script ${APP_BIN_DIR}/Resources
   )
 

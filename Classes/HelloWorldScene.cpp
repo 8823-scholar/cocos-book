@@ -10,6 +10,7 @@
 #include "spine/spine-cocos2dx.h"
 #include "VideoPlayer.h"
 #include "CCWebView.h"
+#include "CCLuaEngine.h"
 
 USING_NS_CC;
 
@@ -77,7 +78,8 @@ bool HelloWorld::init()
     //this->chapter5_8();
     //this->chapter5_9();
     //this->chapter5_11();
-    this->chapter5_12();
+    //this->chapter5_12();
+    this->chapter5_13();
     
     return true;
 }
@@ -647,3 +649,29 @@ void HelloWorld::chapter5_12()
     webview->loadUrl("http://befool.co.jp/");
 }
 
+
+void HelloWorld::chapter5_13()
+{
+	auto engine = LuaEngine::getInstance();
+	ScriptEngineManager::getInstance()->setScriptEngine(engine);
+	engine->executeScriptFile("src/main.lua");
+
+    engine->executeGlobalFunction("foo");
+
+    auto luaStack = engine->getLuaStack();
+    auto luaState = luaStack->getLuaState();
+
+    // sum
+    lua_getglobal(luaState, "sum");
+    luaStack->pushInt(11);
+    luaStack->pushInt(17);
+    if(int result = luaStack->executeFunction(2)) {
+        CCLOG("lua sum(11 + 17) = %d", result);
+    }
+    
+    lua_getglobal(luaState, "bar");
+    luaStack->pushObject(this, "cc.Layer");
+    if(int result = luaStack->executeFunction(1)) {
+        CCLOG("lua draw: %d", result);
+    }
+}
