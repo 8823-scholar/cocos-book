@@ -1,5 +1,6 @@
 PROJECT=proj.ios_mac/Animation.xcodeproj
-SCHEME="Animation iOS"
+SCHEME="Animation iOS Tests"
+TARGET="Animation iOS Tests"
 
 test:
 	xcodebuild \
