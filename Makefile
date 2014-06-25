@@ -1,12 +1,12 @@
 PROJECT=proj.ios_mac/Animation.xcodeproj
-SCHEME="Animation iOS Tests"
 TARGET="Animation iOS Tests"
+DESTINATION="platform=iOS Simulator,name=iPhone Retina(4-inch),OS=7.0"
 
 test:
 	xcodebuild \
 		-project $(PROJECT) \
-		-scheme $(SCHEME) \
+		-target $(TARGET) \
 		-sdk iphonesimulator \
 		-configuration Debug \
-		-destination "platform=iOS Simulator,name=iPhone Retina(4-inch),OS=7.0" \
+		-destination $(DESTINATION) \
 		clean build test
